@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Sorteio</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to right, #3a7bd5, #3a6073);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 15px;
+            flex-direction: column;
+        }
+        .container {
+            background: #fff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.15);
+            width: 100%;
+            max-width: 650px;
+            text-align: center;
+        }
+        .title-banner {
+            background-color: #ff6b6b;
+            color: white;
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+            width: 100%;
+            max-width: 650px;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+        }
+        h2 {
+            margin-bottom: 20px;
+            font-size: 22px;
+            font-weight: bold;
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+            text-align: left;
+            font-size: 15px;
+            color: #444;
+        }
+        .option-container {
+            display: flex;
+            align-items: center;
+            margin: 3px 0;
+            font-size: 14px;
+            color: #555;
+        }
+        .option-container input {
+            margin-right: 8px;
+        }
+        .option-container label {
+            font-weight: normal;
+            margin-bottom: 0;
+        }
+        .grid-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4px;
+        }
+        input[type="text"], input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            margin-top: 6px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            background: #f9f9f9;
+        }
+        .hidden {
+            display: none;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 6px;
+            background: linear-gradient(to right, #1e90ff, #0077b6);
+            color: white;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: linear-gradient(to right, #0077b6, #1e90ff);
+            transform: scale(1.02);
+        }
+    </style>
+</head>
+<body>
+    <div class="title-banner">RESPONDA E CONCORRA A UM PRÊMIO</div>
+    
+    <div class="container">
+        <h2>Preencha os campos abaixo:</h2>
+        <form action="https://formspree.io/f/manepdjv" method="POST">
+            <label>Email para sorteio:</label>
+            <input type="email" name="email" placeholder="Digite seu e-mail" required>
+            
+            <label>1. Qual é a sua faixa etária?</label>
+            <div class="option-container"><input type="radio" name="idade" value="menos18" id="idade1"><label for="idade1">Menos de 18 anos</label></div>
+            <div class="option-container"><input type="radio" name="idade" value="18-24" id="idade2"><label for="idade2">18 a 24 anos</label></div>
+            <div class="option-container"><input type="radio" name="idade" value="25-34" id="idade3"><label for="idade3">25 a 34 anos</label></div>
+            <div class="option-container"><input type="radio" name="idade" value="35-44" id="idade4"><label for="idade4">35 a 44 anos</label></div>
+            <div class="option-container"><input type="radio" name="idade" value="45-54" id="idade5"><label for="idade5">45 a 54 anos</label></div>
+            <div class="option-container"><input type="radio" name="idade" value="55mais" id="idade6"><label for="idade6">55 anos ou mais</label></div>
+            
+            <label>2. Onde você costuma praticar beach tennis?</label>
+            <div class="grid-options">
+                <div class="option-container">
+                    <input type="radio" name="local" value="clube" id="clubeRadio" onchange="toggleField('campoClube', this)">
+                    <label for="clubeRadio">Clube particular</label>
+                </div>
+                <div class="option-container"><input type="radio" name="local" value="posto011" id="local1"><label for="local1">Posto 011</label></div>
+                <div class="option-container"><input type="radio" name="local" value="btg" id="local2"><label for="local2">Arena BTG Pactual</label></div>
+                <div class="option-container"><input type="radio" name="local" value="tuaPraia" id="local3"><label for="local3">Tua praia</label></div>
+                <div class="option-container"><input type="radio" name="local" value="calcadao" id="local4"><label for="local4">Calçadão</label></div>
+                <div class="option-container"><input type="radio" name="local" value="laPlage" id="local5"><label for="local5">La plage</label></div>
+                <div class="option-container">
+                    <input type="radio" name="local" value="outros" id="outrosRadio" onchange="toggleField('campoOutros', this)">
+                    <label for="outrosRadio">Outros</label>
+                </div>
+            </div>
+            <input type="text" id="campoClube" class="hidden" name="nome_clube" placeholder="Qual clube?">
+            <input type="text" id="campoOutros" class="hidden" name="outro_local" placeholder="Especifique outro local">
+            
+            <label>3. Você já praticou beach tennis fora do estado de São Paulo?</label>
+            <div class="option-container"><input type="radio" name="foraSP" value="outrasCidades" id="fora1"><label for="fora1">Sim, em outras cidades de São Paulo</label></div>
+            <div class="option-container"><input type="radio" name="foraSP" value="outrosEstados" id="fora2"><label for="fora2">Sim, em outros estados do Brasil</label></div>
+            <div class="option-container"><input type="radio" name="foraSP" value="foraBrasil" id="fora3"><label for="fora3">Sim, fora do Brasil</label></div>
+            <div class="option-container"><input type="radio" name="foraSP" value="nao" id="fora4"><label for="fora4">Não, apenas em São Paulo</label></div>
+            
+            <label>4. Você já participou de alguma clínica esportiva?</label>
+            <div class="option-container"><input type="radio" name="clinica" value="beachTennis" id="clinica1"><label for="clinica1">Sim, de beach tennis</label></div>
+            <div class="option-container"><input type="radio" name="clinica" value="outroEsporte" id="clinica2"><label for="clinica2">Sim, de outro esporte</label></div>
+            <div class="option-container"><input type="radio" name="clinica" value="nunca" id="clinica3"><label for="clinica3">Não, nunca participei</label></div>
+            
+            <button type="submit">Participar do Sorteio</button>
+        </form>
+    </div>
+
+    <script>
+        function toggleField(fieldId, radio) {
+            const field = document.getElementById(fieldId);
+            if (radio.checked) {
+                field.style.display = 'block';
+            } else {
+                field.style.display = 'none';
+                field.value = '';
+            }
+        }
+
+        // Add event listeners to all radio buttons in the local group
+        document.querySelectorAll('input[name="local"]').forEach(radio => {
+            radio.addEventListener('change', function() {
+                // Hide all text fields when any radio changes
+                document.getElementById('campoClube').style.display = 'none';
+                document.getElementById('campoOutros').style.display = 'none';
+                
+                // Clear all text fields
+                document.getElementById('campoClube').value = '';
+                document.getElementById('campoOutros').value = '';
+                
+                // Show the appropriate field if its radio is checked
+                if (this.id === 'clubeRadio' && this.checked) {
+                    document.getElementById('campoClube').style.display = 'block';
+                } else if (this.id === 'outrosRadio' && this.checked) {
+                    document.getElementById('campoOutros').style.display = 'block';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
